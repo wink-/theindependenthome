@@ -5,6 +5,7 @@ import matter from 'gray-matter'
 import { remark } from 'remark'
 import html from 'remark-html'
 import { Star } from 'lucide-react'
+import { notFound } from 'next/navigation'
 
 interface BlogPost {
   slug: string
@@ -19,33 +20,41 @@ interface BlogPost {
 async function getPostData(slug: string): Promise<BlogPost> {
   const postsDirectory = path.join(process.cwd(), 'posts')
   const fullPath = path.join(postsDirectory, `${slug}.md`)
-  const fileContents = fs.readFileSync(fullPath, 'utf8')
+  
+  try {
+    const fileContents = fs.readFileSync(fullPath, 'utf8')
+    const { data, content } = matter(fileContents)
 
-  const { data, content } = matter(fileContents)
+    const processedContent = await remark()
+      .use(html)
+      .process(content)
+    const contentHtml = processedContent.toString()
 
-  const processedContent = await remark()
-    .use(html)
-    .process(content)
-  const contentHtml = processedContent.toString()
-
-  return {
-    slug,
-    title: data.title,
-    date: data.date,
-    category: data.category,
-    thumbnail: data.thumbnail,
-    rating: data.rating || 0,
-    contentHtml,
+    return {
+      slug,
+      title: data.title,
+      date: data.date,
+      category: data.category,
+      thumbnail: data.thumbnail,
+      rating: data.rating || 0,
+      contentHtml,
+    }
+  } catch (error) {
+    notFound()
   }
 }
 
 export async function generateStaticParams() {
-  const postsDirectory = path.join(process.cwd(), 'posts')
-  const fileNames = fs.readdirSync(postsDirectory)
+  try {
+    const postsDirectory = path.join(process.cwd(), 'posts')
+    const fileNames = fs.readdirSync(postsDirectory)
 
-  return fileNames.map((fileName) => ({
-    slug: fileName.replace(/\.md$/, ''),
-  }))
+    return fileNames.map((fileName) => ({
+      slug: fileName.replace(/\.md$/, ''),
+    }))
+  } catch (error) {
+    return []
+  }
 }
 
 export default async function BlogPost({ params }: { params: { slug: string } }) {

@@ -3,6 +3,7 @@ title: "A Beginner's Guide to Home Tool Kits"
 date: 2024/01/15
 category: "Tool Review"
 thumbnail: "https://placekitten.com/800/400"
+rating: 3
 ---
 
 # A Beginner's Guide to Home Tool Kits
