@@ -6,8 +6,6 @@ thumbnail: "https://placekitten.com/800/400"
 rating: 5
 ---
 
-# The Inevitable Inequality: A Path of Individual Empowerment
-
 The modern economic cycle is not something that we can expect to reverse. We, as a society, are faced with a constant churn of new money entering our system. In an unregulated system such as the modern state there will almost certainly be an increase to inequality between those who "have", and those who "have not". If you understand the dynamic of newly made funds, it should become no surprise when this inevitably happens with all implementations to change a cycle using only systems-based approaches. It will become an economic and painful process, unless something else gives for people to thrive.
 
 ## The Problem With New Money
