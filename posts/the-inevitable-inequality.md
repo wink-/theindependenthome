@@ -3,7 +3,7 @@ title: "The Inevitable Inequality: A Path of Individual Empowerment"
 date: 2024/01/15
 category: "Financial Independence"
 thumbnail: "https://placekitten.com/800/400"
-stars: 1
+rating: 5
 ---
 
 # The Inevitable Inequality: A Path of Individual Empowerment
